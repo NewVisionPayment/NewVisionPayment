@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'DefaultBlazor.Server' " />
+  <ItemGroup>
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="MudBlazor.Markdown" />
+    <None Remove="MudBlazor.ThemeManager" />
+    <None Remove="MudBlazor" />
+    <None Remove="Services\" />
+    <None Remove="Classes\" />
+    <None Remove="Models\" />
+    <None Remove="Controllers\" />
+    <None Remove="Microsoft.Azure.Cosmos" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="MudBlazor.Markdown" Version="0.0.5" />
+    <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.5" />
+    <PackageReference Include="MudBlazor" Version="5.1.5" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.21.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Classes\" />
+    <Folder Include="Models\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+</Project>
