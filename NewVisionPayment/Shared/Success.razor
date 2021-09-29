@@ -1,4 +1,4 @@
-﻿@page "/payfine"
+﻿@page "/success"
 @using NewVisionPayment.Models;
 
 <MudCard>
@@ -27,6 +27,7 @@
 
 
 @code{
+    // This is the id we will carry over from our beginning screen and passed through via the
     [Parameter]
     public NewVisionCustomer displayCustomer { get; set; } = new NewVisionCustomer();
 }

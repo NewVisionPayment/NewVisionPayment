@@ -1,40 +1,35 @@
-﻿
+﻿@page "/address"
+@using NewVisionPayment.Models;
+
+
 <MudContainer Class="mt-16" MaxWidth="MaxWidth.Medium">
     <MudText Typo="Typo.h6" Align="Align.Center" GutterBottom="true">Confirm your address</MudText>
     <MudGrid Spacing="6" Class="mt-16">
         <MudItem xs="7">
+            <MudList>
+                <MudListItem Text="@displayCustomer.Id" />
+                <MudListItem Text="@displayCustomer.reference" />
+            </MudList>
             <MudGrid>
-                <MudItem xs="12">
-                    <MudTextField T="string" Label="Email" />
-                </MudItem>
-                <MudItem xs="12">
-                </MudItem>
-                <MudItem xs="6">
-                    <MudTextField T="string" Label="First name" />
-                </MudItem>
-                <MudItem xs="6">
-                    <MudTextField T="string" Label="Last name" />
-                </MudItem>
-                <MudItem xs="12">
-                    <MudTextField T="string" Label="Address" />
-                </MudItem>
-                <MudItem xs="6">
-                    <MudTextField T="string" Label="Postal code" />
-                </MudItem>
-                <MudItem xs="6">
-                    <MudTextField T="string" Label="Postal Area" />
-                </MudItem>
-                <MudItem xs="12" Class="d-flex justify-center">
-                    <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8">Continue to Payment</MudButton>
-                </MudItem>
+                <MudList>
+                    <MudListItem Text="@displayCustomer.firstName" />
+                    <MudListItem Text="@displayCustomer.lastName" />
+                    <MudListItem Text="@displayCustomer.addressLine1" />
+                    <MudListItem Text="@displayCustomer.addressLine2" />
+                    <MudListItem Text="@displayCustomer.city" />
+                    <MudListItem Text="@displayCustomer.postcode" />
+                </MudList>
             </MudGrid>
         </MudItem>
-        
     </MudGrid>
 </MudContainer>
 
 
 @code
 {
+    // This is the id we will carry over from our beginning screen and passed through via the 
+    [Parameter]
+    public NewVisionCustomer displayCustomer { get; set; } = new NewVisionCustomer();
+
 
 }

@@ -1,4 +1,6 @@
-﻿@inject NavigationManager NavigationManager
+﻿@page "/startpanel"
+
+@inject NavigationManager NavigationManager
 @inject ICosmosDbService CosmosDbService
 
 @using System.Collections.Generic;
@@ -7,12 +9,9 @@
 @using NewVisionPayment.Models;
 @using NewVisionPayment.Services;
 @using NewVisionPayment.Controllers;
+
 <MudCard>
     <MudCardHeader>
-        @if (errorMesg.Length>0)
-                    {
-                        <h1>@errorMesg</h1>
-                    }
     </MudCardHeader>
     <MudCardContent>
         <MudList>
@@ -25,50 +24,34 @@
             <MudListItem>
                 <MudText>Enter your reference number here:</MudText>
                 <MudItem xs="12">
-                    <MudTextField T="string" Label="Reference Number" @bind-Value="customerId" />
+                    <MudTextField T="String" @bind-Value="Id" Label="Reference Number" />
                 </MudItem>
             </MudListItem>
             <MudListItem>
                 <MudItem>
                     <div>
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@GetCustomer"> Click here to get started. </MudButton>
-
+                        
                     </div>
                 </MudItem>
             </MudListItem>
         </MudList>
     </MudCardContent>
+    @customer
 </MudCard>
 
 
 
 @code{
+
     [Parameter]
-    public NewVisionCustomer customer { get; set; } = new NewVisionCustomer();
+    public NewVisionCustomer customer{ get; set; } = new NewVisionCustomer();
+    public string Id;
 
-    public static List<NewVisionCustomer> customerSearch = new List<NewVisionCustomer>();
+    // async void HandleSubmit(string Id)
+    //    {
+    //<button class="btn btn-primary" @onclick="(()=> HandleSubmit(customer.Id))" href="/payment">Click to Continue</button>
+    //  chooseCustomer.getCustomer(CosmosDbService.customers, Id);
+    //
+    //   }
 
-    public static string sqlQuery;
-    public string customerId = "c8812ddf-f5ba-4b20-9445-5bb5ead8a3ed";
-    static string errorMesg = "";
-
-    public string buildQuery(string searchId)
-    {
-        sqlQuery = "SELECT * FROM c WHERE c.ID ='" + searchId +"'";
-        return sqlQuery;
-    }
-
-    async Task GetCustomer()
-    {
-        string customerQuery = buildQuery(customerId);
-        try
-        {
-            customerSearch = await CosmosDbService.GetItemsAsync(customerQuery);
-            errorMesg = customerSearch.ElementAt(0).lastName;
-        }
-        catch (Exception ex)
-        {
-            errorMesg = "Failed to get data " + ex;
-        }
-    }
 }

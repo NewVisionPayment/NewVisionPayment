@@ -1,25 +1,34 @@
 ﻿@page "/payment"
 
+
 @using NewVisionPayment.Services
 @using NewVisionPayment.Shared
+@using NewVisionPayment.Models
 
 @inject NavigationManager NavigationManager
 @inject ICosmosDbService CosmodDbService
 
 
-
-
 <MudPaper Class="a-16 ma-2 ml-12" Elevation="3">
     <MudText Typo="Typo.h4" GutterBottom="true">&nbsp;</MudText>
-    <MudText Class="ml-12" Typo="Typo.h4" GutterBottom="false">Welcome to NewVision Payments</MudText>
-    <MudText Class="mb-8 ml-12">   Please have your letter and payment details handy</MudText>
+    <MudText Class="mb-8 ml-12">   Please make sure all details are correct</MudText>
     <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
         <MudGrid>
             <MudItem xs="12" sm="6">
                 <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
 
-                    <Address />
-
+                    @if (pageNumber == 0)
+                    {
+                        <Address displayCustomer="chooseCustomer.ChosenCustomer" />
+                    }
+                    else if (pageNumber == 1)
+                    {
+                        <PayFine displayCustomer="chooseCustomer.ChosenCustomer" />
+                    }
+                    else if (pageNumber == 2)
+                    {
+                        <Success displayCustomer="chooseCustomer.ChosenCustomer" />
+                    }
                 </MudPaper>
             </MudItem>
             <MudItem xs="12" sm="6">
@@ -30,5 +39,44 @@
                 </MudPaper>
             </MudItem>
         </MudGrid>
+        @if (pageNumber == 0)
+        {
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Continue to Payment</MudButton>
+        }
+        else if (pageNumber == 1)
+        {
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Checkout</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageBack">Back</MudButton>
+        }
+        else if (pageNumber == 2)
+        {
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Pay</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageBack">Back</MudButton>
+        }
+
     </MudContainer>
 </MudPaper>
+
+
+@code{
+    public byte pageNumber = 0;
+
+    void pageForward()
+    {
+        pageNumber += 1;
+        if (pageNumber > 3)
+        {
+            pageNumber = 3;
+        }
+    }
+
+    void pageBack()
+    {
+        pageNumber -= 1;
+        if (pageNumber < 0)
+        {
+            pageNumber = 0;
+        }
+    }
+
+}

@@ -12,7 +12,10 @@ namespace NewVisionPayment.Models
     {
 
         //[JsonProperty(PropertyName = "id")]
-        public String Id { get; set; } = Guid.NewGuid().ToString();
+        public String Id { get; set; }
+
+        //[JsonProperty(propertyName = reference)]
+        public String reference { get; set; }
 
         //[JsonProperty(PropertyName = "lastname")]
         public string lastName { get; set; }
@@ -21,7 +24,7 @@ namespace NewVisionPayment.Models
         public string firstName { get; set; }
 
         //[JsonProperty(PropertyName = "addressline1")]
-        public string addresLine1 { get; set; }
+        public string addressLine1 { get; set; }
 
         //[JsonProperty(PropertyName = "addressline2")]
         public string addressLine2 { get; set; }
