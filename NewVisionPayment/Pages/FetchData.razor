@@ -1,39 +1,40 @@
 ﻿@page "/fetchdata"
 
-    @using System.Collections.Generic;
-    @using System.Net;
-    @using Microsoft.Azure.Cosmos;
-    @using NewVisionPayment.Models;
-    @using NewVisionPayment.Services;
-    @using NewVisionPayment.Controllers;
+@using System.Collections.Generic;
+@using System.Net;
+@using Microsoft.Azure.Cosmos;
+@using NewVisionPayment.Models;
+@using NewVisionPayment.Services;
+@using NewVisionPayment.Controllers;
 
-    @inject ICosmosDbService CosmosDbService
+@inject ICosmosDbService CosmosDbService
 
-    <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-16">
-        <MudText Typo="Typo.h3" GutterBottom="true">NewVisionPayments Dashboard</MudText>
-        <MudText Class="mb-8">This component demonstrates fetching data from the server.</MudText>
-        @if (customers == null)
-        {
-            <MudProgressCircular Color="Color.Default" Indeterminate="true" />
-        }
-        else
-        {
-            <MudSimpleTable Dense="false" Hover="true" Bordered="true" Striped="true" Style="overflow-x: auto;">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Fine Amount</th>
-                        <th>Deadline</th>
-                        <th>Payment Plan?</th>
-                        <th>Minimum Payment</th>
-                        <th>Fine Paid?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (NewVisionCustomer customer in customers)
-                    {
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-16">
+    <MudText Typo="Typo.h3" GutterBottom="true">NewVisionPayments Dashboard</MudText>
+    <MudText Class="mb-8">This component demonstrates fetching data from the server.</MudText>
+    @if (customers == null)
+    {
+        <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+        <MudSkeleton Animation="Animation.Wave" />
+    }
+    else
+    {
+        <MudSimpleTable Dense="false" Hover="true" Bordered="true" Striped="true" Style="overflow-x: auto;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Fine Amount</th>
+                    <th>Deadline</th>
+                    <th>Payment Plan?</th>
+                    <th>Minimum Payment</th>
+                    <th>Fine Paid?</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (NewVisionCustomer customer in customers)
+                {
                     <tr>
                         <td>@customer.Id</td>
                         <td>@customer.firstName</td>
@@ -44,26 +45,26 @@
                         <td>@customer.minimumPayment</td>
                         <td>@customer.finePaid</td>
                     </tr>
-                    }
-                </tbody>
-            </MudSimpleTable>
-        }
+                }
+            </tbody>
+        </MudSimpleTable>
+    }
 
 
-    </MudContainer>
+</MudContainer>
 
-    @code {
-        public static List<NewVisionCustomer> customers = new List<NewVisionCustomer>();
+@code {
+    public static List<NewVisionCustomer> customers = new List<NewVisionCustomer>();
 
-        public static string sqlQuery;
+    public static string sqlQuery;
 
-        protected override async Task OnInitializedAsync()
-        {
+    protected override async Task OnInitializedAsync()
+    {
 
-            customers = await CosmosDbService.GetItemsAsync("SELECT * FROM c");
-            // where c.finepaid = false
-
-        }
+        customers = await CosmosDbService.GetItemsAsync("SELECT * FROM c");
+        // where c.finepaid = false
 
     }
+
+}
 

@@ -1,63 +1,40 @@
 ﻿@page "/"
+@using NewVisionPayment.Services
+@using NewVisionPayment.Shared
 
-<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-16">
+@inject NavigationManager NavigationManager
+@inject ICosmosDbService CosmodDbService
 
-    <MudPaper Class="pa-16 ma-2" Elevation="3">
+
+
+
+    <MudPaper Class="a-16 ma-2" Elevation="3">
+        <MudText Typo="Typo.h4" GutterBottom="true">&nbsp;</MudText>
         <MudText Typo="Typo.h4" GutterBottom="true">Welcome to NewVision Payments</MudText>
-        <MudText Class="mb-8">Pleaase have your letter and payment details handy</MudText>
-        <MudAlert Severity="Severity.Normal">You can find documentation and examples on our website here: <MudLink Href="https://mudblazor.com" Typo="Typo.body2" Color="Color.Inherit"><b>www.mudblazor.com</b></MudLink></MudAlert>
+        <MudText Class="mb-8">   Please have your letter and payment details handy</MudText>
+        <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+            <MudGrid>
+                <MudItem xs="12" sm="6">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
 
-        <MudPaper Height="600px" Class="mud-theme-background" Style="overflow:hidden; position:relative;">
+                        <StartPanel />
 
-        
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
 
+                        <BeforeYouBegin />
 
-        <div class="d-flex justify-center align-center mud-height-full">
-            
-                <MudButton Link="/fetchdata" Variant="Variant.Filled" Color="Color.Primary" @onclick="PageForward"> Click here to get started. </MudButton>
-            
-        </div>
-
-        </MudPaper>
-
-
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
     </MudPaper>
-</MudContainer>
+
 
 @code {
 
-    private static int caseId = 0;
-
-    public static int pageNumber = 0;
-
-    public static Color[] colorPage =
-        {
-            Color.Primary, Color.Default, Color.Default, Color.Default
-        };
-
-    public static void PageForward()
-    {
-
-        pageNumber += 1;
-
-    }
 
 
-    public static void PageZero()
-    {
-        pageNumber = 0;
-
-    }
-    public static void PageBack()
-    {
-        pageNumber -= 1;
-        if (pageNumber < 0)
-        {
-            pageNumber = 0;
-        }
-    }
-
-    /*
-
-        */
 }
