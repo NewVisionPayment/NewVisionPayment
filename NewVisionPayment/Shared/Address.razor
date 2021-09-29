@@ -1,24 +1,13 @@
-﻿@page "/address"
-
-<MudBreadcrumbs Items="_items">
-    <SeparatorTemplate>
-        <MudIcon Icon="@Icons.Material.Filled.ArrowForward" Size="Size.Small" />
-    </SeparatorTemplate>
-</MudBreadcrumbs>
+﻿
 <MudContainer Class="mt-16" MaxWidth="MaxWidth.Medium">
-    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Confirm your address</MudText>
+    <MudText Typo="Typo.h6" Align="Align.Center" GutterBottom="true">Confirm your address</MudText>
     <MudGrid Spacing="6" Class="mt-16">
         <MudItem xs="7">
-            <MudText Typo="Typo.h5" GutterBottom="true">Billing address</MudText>
             <MudGrid>
                 <MudItem xs="12">
                     <MudTextField T="string" Label="Email" />
                 </MudItem>
                 <MudItem xs="12">
-                    <MudTextField T="string" Label="Mobile number" />
-                </MudItem>
-                <MudItem xs="12">
-                    <MudTextField T="string" Label="Personal number" />
                 </MudItem>
                 <MudItem xs="6">
                     <MudTextField T="string" Label="First name" />
@@ -40,64 +29,12 @@
                 </MudItem>
             </MudGrid>
         </MudItem>
-        <MudItem xs="5">
-            <MudText Typo="Typo.h5" GutterBottom="true">Details</MudText>
-            <MudPaper Class="d-flex flex-column" Style="height:100%;" Outlined="true">
-                <MudList Clickable="true">
-                    <MudListItem Icon="@Icons.Material.Filled.ContentCut">
-                        <div class="d-flex">
-                            <MudText>Fine Amount</MudText>
-                            <MudText Inline="true" Class="ml-auto">$5</MudText>
-                        </div>
-                    </MudListItem>
-                    <MudListItem Icon="@Icons.Material.Filled.AirplanemodeActive">
-                        <div class="d-flex">
-                            <MudText>Due Datye</MudText>
-                            <MudText Class="ml-auto">$20</MudText>
-                        </div>
-                    </MudListItem>
-                    <MudListItem Icon="@Icons.Material.Filled.Create">
-                        <div class="d-flex">
-                            <MudText>Plastic Glue</MudText>
-                            <MudText Class="ml-auto">$12</MudText>
-                        </div>
-                    </MudListItem>
-                    <MudListItem Icon="@Icons.Material.Filled.ColorLens">
-                        <div class="d-flex">
-                            <MudText>Color set - Modern planes</MudText>
-                            <MudText Class="ml-auto">$16</MudText>
-                        </div>
-                    </MudListItem>
-                </MudList>
-                <div class="mt-auto">
-                    <MudDivider />
-                    <div class="d-flex pa-4">
-                        <MudText>Total:</MudText>
-                        <MudText Class="ml-auto"><b>$53</b></MudText>
-                    </div>
-                </div>
-            </MudPaper>
-        </MudItem>
+        
     </MudGrid>
 </MudContainer>
 
 
-
-
-
-
-
 @code
 {
-    [Parameter]
-    public int caseId { get; set; }
-
-
-    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
-    {
-        new BreadcrumbItem("Case Id", href: "/"),
-        new BreadcrumbItem("Confirm Address", href: "#"),
-        new BreadcrumbItem("Payment", href: null, disabled: true)
-    };
 
 }
