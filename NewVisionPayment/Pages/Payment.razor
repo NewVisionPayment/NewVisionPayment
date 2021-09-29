@@ -1,0 +1,40 @@
+﻿@page "/payment"
+@using NewVisionPayment.Services
+@using NewVisionPayment.Shared
+
+@inject NavigationManager NavigationManager
+@inject ICosmosDbService CosmodDbService
+
+
+
+
+
+    <MudPaper Class="a-16 ma-2" Elevation="3">
+        <MudText Typo="Typo.h4" GutterBottom="true">&nbsp;</MudText>
+        <MudText Typo="Typo.h4" GutterBottom="true">Welcome to NewVision Payments</MudText>
+        <MudText Class="mb-8">   Please have your letter and payment details handy</MudText>
+        <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+            <MudGrid>
+                <MudItem xs="12" sm="6">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
+
+                        <StartPanel />
+
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
+
+                        <BeforeYouBegin />
+
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+    </MudPaper>
+
+
+    @code {
+        
+
+    }
