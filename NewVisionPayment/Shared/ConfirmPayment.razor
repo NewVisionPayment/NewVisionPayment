@@ -1,34 +1,36 @@
 ﻿@page "/confirmpayment"
 @using NewVisionPayment.Models;
-<h3>Confirm your payment</h3>
+
+@inject Services.customerMoney customerMoney
 
 
 <MudCard>
-    <MudList Dense="true">
-        <MudListItem>
-            <MudItem xs="8">
-                <h2>Fine Amount @confirmFine.fineAmount</h2>
-            </MudItem>
-        </MudListItem>
-        @if (confirmFine.minimumPayment > 0)
-        {
-            <MudListItem>
-                <MudItem xs="8">
-                    <h2>Minimum @confirmFine.minimumPayment</h2>
-                </MudItem>
-            </MudListItem>
 
-        }
-        <MudListItem>
-            <MudForm>
-                
-            </MudForm>
-        </MudListItem>
-    </MudList>
+
+
+
+    <MudText Typo="Typo.h4">
+        You @confirmFine.firstName @confirmFine.lastName  have agreed to pay the amount below in legal settlement towards your obligations under the court process, ID number @confirmFine.Id.
+    </MudText>
+    
+
+    <MudText Typo="Typo.h3">
+        <MudAlert Severity="Severity.Error" Variant="Variant.Outlined" Dense="true" Class="my-2">£@customerMoney.amountToPay</MudAlert>
+    </MudText>
+
 
 </MudCard>
 
-@code {
-    [Parameter]
-    public NewVisionCustomer confirmFine { get; set; } = new NewVisionCustomer();
-}
+
+
+    @code
+{
+
+        [Parameter]
+        public NewVisionCustomer confirmFine { get; set; } = new NewVisionCustomer();
+
+        public float myFinalAmount { get; set; }
+
+
+
+    }

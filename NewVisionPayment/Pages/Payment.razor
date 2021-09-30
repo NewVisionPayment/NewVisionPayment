@@ -24,7 +24,7 @@
                     {
                         <PayFine displayFine="chooseCustomer.ChosenCustomer" />
                     }
-                    else if (pageNumber == 1)
+                    else if (pageNumber == 2)
                     {
                         <ConfirmPayment confirmFine="chooseCustomer.ChosenCustomer" />
                     }
@@ -52,7 +52,7 @@
                     {
                         <CardDetails />
                     }
-                    else if (pageNumber == 2)
+                    else if (pageNumber == 2 || pageNumber ==3)
                     {
                         <WhatNext />
                     }
@@ -63,19 +63,19 @@
         </MudGrid>
         @if (pageNumber == 0)
         {
-            <MudButton Link="/" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" href="/">Home Page</MudButton>
-            <MudButton @bind-Value="empty" Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Continue to Payment</MudButton>
+            <MudButton Link="/" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mb-8" href="/">Home Page</MudButton>
+            <MudButton @bind-Value="empty" Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mb-8" @onclick="pageForward">Continue to Payment</MudButton>
         }
         else if (pageNumber == 1)
         {
-            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageBack">Back</MudButton>
-            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Checkout</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mb-8" @onclick="pageBack">Back</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mb-8" @onclick="pageForward">Checkout</MudButton>
 
         }
         else if (pageNumber == 2)
         {
-            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageBack">Back</MudButton>
-            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Pay</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mb-8" @onclick="pageBack">Back</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mb-8" @onclick="pageForward">Pay</MudButton>
 
         }
         else if (pageNumber == 3)

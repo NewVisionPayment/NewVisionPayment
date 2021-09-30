@@ -29,6 +29,7 @@ namespace NewVisionPayment
             services.AddMudServices();
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
+            services.AddScoped<Services.customerMoney>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

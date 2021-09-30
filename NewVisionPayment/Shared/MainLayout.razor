@@ -8,10 +8,11 @@
 <MudLayout>
     <MudAppBar Color="Color.Primary" Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <img src="imgHeaderLogo.png" />
         <MudSpacer />
         <MudText>Fine Payments System</MudText>
-        <MudIconButton Icon="@Icons.Custom.Brands.MicrosoftAzureDevOps" Color="Color.Inherit" Link="https://portal.azure.com/" Target="_blank" />
-        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/NewVisionPayment/NewVisionPayment" Target="_blank" />
+        <MudIconButton Icon="@Icons.Material.Filled.Language" Color="Color.Inherit" Link="https://portal.azure.com/" Target="_blank" />
+        <MudIconButton Icon="@Icons.Material.Filled.AccessibilityNew" Color="Color.Inherit" Link="https://github.com/NewVisionPayment/NewVisionPayment" Target="_blank" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
         <MudDrawerHeader>

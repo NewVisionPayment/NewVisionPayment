@@ -1,40 +1,52 @@
 ﻿@page "/payfine"
+@inject Services.customerMoney customerMoney;
 @using NewVisionPayment.Models;
 
 
 <MudCard>
     <MudList Dense="true">
-        <MudListItem>
-            <MudItem xs="8">
-                <h2>Fine Amount @displayFine.fineAmount</h2>
-            </MudItem>
-        </MudListItem>
+        <MudText> Your fine, as levied by the CTSNI is:</MudText>
+        <MudTextField @bind-Value="displayFine.fineAmount" Label="Fine Amount £" ReadOnly="true" />
+
         @if (displayFine.minimumPayment > 0)
         {
-            <MudListItem>
-                <MudItem xs="8">
-                    <h2>Minimum @displayFine.minimumPayment</h2>
-                </MudItem>
-            </MudListItem>
-
+            <MudText> Your Payment plan, as agreed by the CTSNI:</MudText>
+            <MudTextField @bind-Value="displayFine.minimumPayment" Label="Minimum Payment £" ReadOnly="true" />
+            @if (notenough == true)
+            {
+                <MudAlert Severity="Severity.Warning">Increase amount</MudAlert>
+            }
         }
-    <MudListItem>
-        <MudForm>
 
-        </MudForm>
-        </MudListItem>
-</MudList>
+        <MudTextField @bind-Value="youPay" Label="Your Payment £" Variant="Variant.Text" @onfocusout="payEnough" />
 
- </MudCard>
+    </MudList>
+
+</MudCard>
 
 
+@code{
+    [Parameter]
+    public NewVisionCustomer displayFine { get; set; } = new NewVisionCustomer();
 
-    @code{
-        [Parameter]
-        public NewVisionCustomer displayFine { get; set; } = new NewVisionCustomer();
+    public bool notenough = true;
 
-        public void FormSubmit()
+    public float youPay = 0;
+
+
+        public void payEnough()
+    {
+        if (youPay < displayFine.minimumPayment)
         {
-            //
+            notenough = true;
         }
+
+        else
+        {
+            notenough = false;
+        }
+        customerMoney.amountToPay = youPay;
+
     }
+
+}

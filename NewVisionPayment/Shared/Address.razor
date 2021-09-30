@@ -2,19 +2,19 @@
 @using NewVisionPayment.Models;
 
 
-<MudContainer Class="mt-4" MaxWidth="MaxWidth.Medium">
-    <MudGrid Spacing="6" Class="mt-4">
+<MudContainer Class="mt-1" MaxWidth="MaxWidth.Medium">
+    <MudGrid Spacing="2" Class="mt-4">
         <MudItem xs="7">
             <MudGrid>
                 <MudList Clickable="true" Dense="true">
-                    <MudListItem Text="@displayCustomer.Id" />
+                    <MudTextField @bind-Value="displayCustomer.Id" Label="Case Id" ReadOnly="true" Variant="Variant.Text" />
                     <MudDivider />
-                    <MudListItem Text="@displayCustomer.firstName" />
-                    <MudListItem Text="@displayCustomer.lastName" />
-                    <MudListItem Text="@displayCustomer.addressLine1" />
-                    <MudListItem Text="@displayCustomer.addressLine2" />
-                    <MudListItem Text="@displayCustomer.city" />
-                    <MudListItem Text="@displayCustomer.postcode" />
+                    <MudTextField @bind-Value="displayCustomer.firstName" Label="First Name" ReadOnly="true" Variant="Variant.Text" />
+                    <MudTextField @bind-Value="displayCustomer.lastName" Label="Last Name" ReadOnly="true" Variant="Variant.Text" />
+                    <MudTextField @bind-Value="displayCustomer.addressLine1" Label="Address 1" ReadOnly="true" Variant="Variant.Text" />
+                    <MudTextField @bind-Value="displayCustomer.addressLine2" Label="Address 2" ReadOnly="true" Variant="Variant.Text" />
+                    <MudTextField @bind-Value="displayCustomer.city" Label="City" ReadOnly="true" Variant="Variant.Text" />
+                    <MudTextField @bind-Value="displayCustomer.postcode" Label="PostCode" ReadOnly="true" Variant="Variant.Text" />
                 </MudList>
             </MudGrid>
         </MudItem>
