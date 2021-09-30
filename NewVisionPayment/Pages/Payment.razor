@@ -9,10 +9,11 @@
 @inject ICosmosDbService CosmodDbService
 
 
-<MudPaper Class="a-16 ma-2 ml-12" Elevation="3">
-    <MudText Typo="Typo.h4" GutterBottom="true">&nbsp;</MudText>
-    <MudText Class="mb-8 ml-12">   Please make sure all details are correct</MudText>
-    <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+<MudPaper Class="a-8 ma-2 ml-6" Elevation="3">
+    @if (pageNumber < 3) {  
+    <MudText Class="mb-8 ml-6">Case ID @chooseCustomer.ChosenCustomer.Id   Please make sure all details are correct</MudText>
+    }
+    <MudContainer Class="mt-8 px-8" MaxWidth="MaxWidth.False">
         <MudGrid>
             <MudItem xs="12" sm="6">
                 <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
@@ -23,9 +24,13 @@
                     }
                     else if (pageNumber == 1)
                     {
-                        <PayFine displayCustomer="chooseCustomer.ChosenCustomer" />
+                        <PayFine displayFine="chooseCustomer.ChosenCustomer" />
                     }
-                    else if (pageNumber == 2)
+                    else if (pageNumber == 1)
+                    {
+                        <ConfirmPayment confirmFine="chooseCustomer.ChosenCustomer" />
+                    }
+                    else if (pageNumber == 3)
                     {
                         <Success displayCustomer="chooseCustomer.ChosenCustomer" />
                     }
@@ -33,8 +38,19 @@
             </MudItem>
             <MudItem xs="12" sm="6">
                 <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
+                    @if (pageNumber == 0)
+                    {
+                        <IfSomeThingIsWrong />
+                    }
+                    else if (pageNumber == 1)
+                    {
+                        <CardDetails />
+                    }
+                    else if (pageNumber == 2)
+                    {
+                        <WhatNext />
+                    }
 
-                    <IfSomeThingIsWrong />
 
                 </MudPaper>
             </MudItem>
@@ -52,6 +68,10 @@
         {
             <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Pay</MudButton>
             <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageBack">Back</MudButton>
+        }
+        else if (pageNumber == 3)
+        {
+            <MudButton Link="/" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" href="/" >Home Page</MudButton>
         }
 
     </MudContainer>

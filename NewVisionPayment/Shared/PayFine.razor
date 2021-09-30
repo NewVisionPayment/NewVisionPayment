@@ -1,32 +1,40 @@
 ﻿@page "/payfine"
 @using NewVisionPayment.Models;
 
+
 <MudCard>
-    <MudCardHeader>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudList>
+    <MudList Dense="true">
+        <MudListItem>
+            <MudItem xs="8">
+                <h2>Fine Amount @displayFine.fineAmount</h2>
+            </MudItem>
+        </MudListItem>
+        @if (displayFine.minimumPayment > 0)
+        {
             <MudListItem>
-                <MudText>Choose Payment Method</MudText>
-                <MudItem xs="12">
-                    <MudTextField T="string" Label="Case Id" />
+                <MudItem xs="8">
+                    <h2>Minimum @displayFine.minimumPayment</h2>
                 </MudItem>
             </MudListItem>
-            <MudListItem>
-                <MudText>Enter your email</MudText>
-                <MudItem xs="12">
-                    <MudTextField T="string" Label="Reference Number" />
-                </MudItem>
-            </MudListItem>
-            <MudListItem>
-            </MudListItem>
-        </MudList>
-    </MudCardContent>
-</MudCard>
+
+        }
+    <MudListItem>
+        <MudForm>
+
+        </MudForm>
+        </MudListItem>
+</MudList>
+
+ </MudCard>
 
 
 
-@code{
-    [Parameter]
-    public NewVisionCustomer displayCustomer { get; set; } = new NewVisionCustomer();
-}
+    @code{
+        [Parameter]
+        public NewVisionCustomer displayFine { get; set; } = new NewVisionCustomer();
+
+        public void FormSubmit()
+        {
+            //
+        }
+    }

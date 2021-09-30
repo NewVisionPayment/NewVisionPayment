@@ -1,0 +1,33 @@
+﻿@page "/failure"
+@using NewVisionPayment.Models;
+
+<MudCard>
+    <MudCardHeader>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudList>
+            <MudListItem>
+                <MudText>Choose Payment Method</MudText>
+                <MudItem xs="12">
+                    <MudTextField T="string" Label="Case Id" />
+                </MudItem>
+            </MudListItem>
+            <MudListItem>
+                <MudText>Enter your email</MudText>
+                <MudItem xs="12">
+                    <MudTextField T="string" Label="Reference Number" />
+                </MudItem>
+            </MudListItem>
+            <MudListItem>
+            </MudListItem>
+        </MudList>
+    </MudCardContent>
+</MudCard>
+
+
+
+@code{
+    // This is the id we will carry over from our beginning screen and passed through via the
+    [Parameter]
+    public NewVisionCustomer displayCustomer { get; set; } = new NewVisionCustomer();
+}
