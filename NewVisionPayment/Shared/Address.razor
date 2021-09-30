@@ -6,7 +6,9 @@
     <MudGrid Spacing="6" Class="mt-4">
         <MudItem xs="7">
             <MudGrid>
-                <MudList>
+                <MudList Clickable="true" Dense="true">
+                    <MudListItem Text="@displayCustomer.Id" />
+                    <MudDivider />
                     <MudListItem Text="@displayCustomer.firstName" />
                     <MudListItem Text="@displayCustomer.lastName" />
                     <MudListItem Text="@displayCustomer.addressLine1" />
@@ -22,9 +24,8 @@
 
 @code
 {
-    // This is the id we will carry over from our beginning screen and passed through via the 
+    // This is the id we will carry over from our beginning screen and passed through via the
     [Parameter]
     public NewVisionCustomer displayCustomer { get; set; } = new NewVisionCustomer();
-
 
 }

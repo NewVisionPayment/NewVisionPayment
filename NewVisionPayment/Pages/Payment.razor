@@ -10,10 +10,8 @@
 
 
 <MudPaper Class="a-8 ma-2 ml-6" Elevation="3">
-    @if (pageNumber < 3) {  
-    <MudText Class="mb-8 ml-6">Case ID @chooseCustomer.ChosenCustomer.Id   Please make sure all details are correct</MudText>
-    }
-    <MudContainer Class="mt-8 px-8" MaxWidth="MaxWidth.False">
+
+    <MudContainer  Class="mt-8 px-8" MaxWidth="MaxWidth.False">
         <MudGrid>
             <MudItem xs="12" sm="6">
                 <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
@@ -32,7 +30,14 @@
                     }
                     else if (pageNumber == 3)
                     {
+                        if (Success = true)
+                        {
                         <Success displayCustomer="chooseCustomer.ChosenCustomer" />
+                        }
+                        else
+                                    {
+                                       <Failure displayFail="chooseCustomer.ChosenCustomer" />
+                                    }
                     }
                 </MudPaper>
             </MudItem>
@@ -80,6 +85,7 @@
 
 @code{
     public byte pageNumber = 0;
+    public bool Success = false;
 
     void pageForward()
     {
@@ -88,6 +94,17 @@
         {
             pageNumber = 3;
         }
+
+        Random rnd = new Random();
+        int num = rnd.Next(0,1);
+        if (num == 1){
+            Success = true;
+        }
+        else
+        {
+            Success = false;
+        }
+
     }
 
     void pageBack()

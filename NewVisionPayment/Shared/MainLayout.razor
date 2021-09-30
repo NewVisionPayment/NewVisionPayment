@@ -1,7 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
 
-<MudThemeProvider />
+<MudThemeProvider Theme="MyCustomTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -30,5 +30,23 @@
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
+    }
+
+    @code{
+
+        MudTheme MyCustomTheme = new MudTheme()
+        {
+
+            Palette = new Palette()
+            {
+
+                Primary = "#594ae2ff",
+                TextPrimary = "#000000ff",
+                TextSecondary = "#000000ff",
+                TextDisabled = "#000000ff",
+                GrayDefault = "#EEEEEE"
+            }
+        };
+
     }
 }
