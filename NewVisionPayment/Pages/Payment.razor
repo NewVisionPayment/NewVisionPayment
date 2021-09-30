@@ -11,7 +11,7 @@
 
 <MudPaper Class="a-8 ma-2 ml-6" Elevation="3">
 
-    <MudContainer  Class="mt-8 px-8" MaxWidth="MaxWidth.False">
+    <MudContainer Class="mt-8 px-8" MaxWidth="MaxWidth.False">
         <MudGrid>
             <MudItem xs="12" sm="6">
                 <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
@@ -30,14 +30,15 @@
                     }
                     else if (pageNumber == 3)
                     {
-                        if (Success = true)
+                        if (Success == true)
                         {
-                        <Success displayCustomer="chooseCustomer.ChosenCustomer" />
+                            <Success displayCustomer="chooseCustomer.ChosenCustomer" />
                         }
                         else
-                                    {
-                                       <Failure displayFail="chooseCustomer.ChosenCustomer" />
-                                    }
+                        {
+                            <Failure displayFail="chooseCustomer.ChosenCustomer" />
+
+                        }
                     }
                 </MudPaper>
             </MudItem>
@@ -62,21 +63,31 @@
         </MudGrid>
         @if (pageNumber == 0)
         {
-            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Continue to Payment</MudButton>
+            <MudButton Link="/" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" href="/">Home Page</MudButton>
+            <MudButton @bind-Value="empty" Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Continue to Payment</MudButton>
         }
         else if (pageNumber == 1)
         {
-            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Checkout</MudButton>
             <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageBack">Back</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Checkout</MudButton>
+
         }
         else if (pageNumber == 2)
         {
-            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Pay</MudButton>
             <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="pageBack">Back</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mt-8" @onclick="pageForward">Pay</MudButton>
+
         }
         else if (pageNumber == 3)
         {
-            <MudButton Link="/" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" href="/" >Home Page</MudButton>
+            if (Success)
+            {
+                <MudButton  Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="@goHome">Home Page</MudButton>
+            }
+            else
+            {
+                <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="@pageDeclined">Back</MudButton>
+            }
         }
 
     </MudContainer>
@@ -87,6 +98,8 @@
     public byte pageNumber = 0;
     public bool Success = false;
 
+    public NewVisionCustomer empty = new NewVisionCustomer();
+
     void pageForward()
     {
         pageNumber += 1;
@@ -96,8 +109,8 @@
         }
 
         Random rnd = new Random();
-        int num = rnd.Next(0,1);
-        if (num == 1){
+        int num = rnd.Next(0,3);
+        if (num > 0){
             Success = true;
         }
         else
@@ -114,6 +127,16 @@
         {
             pageNumber = 0;
         }
+    }
+
+    void pageDeclined()
+    {
+        pageNumber = 1;
+    }
+
+    void goHome()
+    {
+        NavigationManager.NavigateTo("/");
     }
 
 }

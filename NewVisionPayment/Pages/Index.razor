@@ -8,6 +8,7 @@
 @using NewVisionPayment.Controllers;
 @using System.ComponentModel.DataAnnotations
 
+
 @inject ICosmosDbService CosmosDbService
 
 @inject NavigationManager NavigationManager
@@ -33,11 +34,11 @@
                                         <MudCardContent>
                                             <MudTextField Label="Case ID" HelperText="8 characters"
                                                           @bind-Value="customerInput.Id" />
-                                            <MudTextField Label="Online Reference" Class="mt-3"
+                                            <MudTextField Label="Online Reference" HelperText="TV21VXXX"
                                                           @bind-Value="customerInput.reference" />
                                         </MudCardContent>
                                         <MudCardActions>
-                                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Continue</MudButton>
+                                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Secondary" Class="ml-auto">Continue</MudButton>
                                         </MudCardActions>
                                     </MudCard>
                                     @if (errorMessage == true)
@@ -70,7 +71,9 @@
     public static List<NewVisionCustomer> customers = new List<NewVisionCustomer>();
 
     // This is our input for the customer data
-    public static NewVisionCustomer customerInput { get; set; } = new NewVisionCustomer();
+    [Parameter]
+    public NewVisionCustomer customerInput { get; set; } = new NewVisionCustomer();
+
     private NewVisionCustomer ourCustomer = new NewVisionCustomer();
     // This is a flag to let us know if we have received correct input
     public static bool validCustomer = false;
@@ -79,11 +82,11 @@
     async void OnValidSubmit() // This takes the submit from the button in the form
     {
         // Test purposes only
-        Console.WriteLine("In the submit section");
+        //Console.WriteLine("In the submit section");
         foreach (NewVisionCustomer cust in customers)
         {
             // Test purposes only
-            Console.WriteLine("In the loop section");
+            //Console.WriteLine("In the loop section");
             if ((cust.Id == customerInput.Id) && (cust.reference == customerInput.reference))
             {
                 validCustomer = true;
@@ -91,7 +94,7 @@
                 chooseCustomer.ChosenCustomer = cust;
                 NavigationManager.NavigateTo($"/payment");
                 // Test purposes only
-                Console.WriteLine("In the found section" );
+                //Console.WriteLine("In the found section" );
             }
         }
         if (validCustomer == false)
@@ -106,7 +109,7 @@
 
         customers = await CosmosDbService.GetItemsAsync("SELECT * FROM c");
         // Test purposes only
-        Console.WriteLine("In the all customers section");
+        //Console.WriteLine("In the all customers section");
 
     }
 

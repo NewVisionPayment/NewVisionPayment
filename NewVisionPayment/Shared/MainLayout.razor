@@ -6,16 +6,16 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="0">
+    <MudAppBar Color="Color.Primary" Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudSpacer />
-        <MudText>NewVision</MudText>
+        <MudText>Fine Payments System</MudText>
         <MudIconButton Icon="@Icons.Custom.Brands.MicrosoftAzureDevOps" Color="Color.Inherit" Link="https://portal.azure.com/" Target="_blank" />
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/NewVisionPayment/NewVisionPayment" Target="_blank" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
         <MudDrawerHeader>
-            <MudText Typo="Typo.h6">NewVision Payments</MudText>
+            <MudText Typo="Typo.h6">Fine Payments System</MudText>
         </MudDrawerHeader>
         <NavMenu />
     </MudDrawer>
@@ -40,11 +40,15 @@
             Palette = new Palette()
             {
 
-                Primary = "#594ae2ff",
+                Primary = "#222222ff",
+                Secondary = "#009911ff",
+                Tertiary = "#ff0022ff",
                 TextPrimary = "#000000ff",
                 TextSecondary = "#000000ff",
                 TextDisabled = "#000000ff",
-                GrayDefault = "#EEEEEE"
+                GrayDefault = "#EEEEEE",
+                PrimaryDarken = "rgb(22, 22, 22)"
+
             }
         };
 

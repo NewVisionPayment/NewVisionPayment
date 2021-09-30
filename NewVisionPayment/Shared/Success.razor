@@ -1,24 +1,31 @@
 ﻿@page "/success"
 @using NewVisionPayment.Models;
 
+
 <MudCard>
     <MudCardHeader>
         <h1>Thank you!</h1>
     </MudCardHeader>
     <MudCardContent>
-        <p>The income from the TV licence fee means all licence payers can enjoy an ever wider choice of BBC programmes and services on TV, radio and online including:</p>
-        <ul>
-            <li>Nine national TV channels plus regional TV services</li>
-            <li>Radio stations - 10 pan-UK, six national and 40 local</li>
-            <li>BBC website</li>
-            <li>BBC iPlayer</li>
-            <li>BBC Sounds – including radio and podcasts</li>
-            <li>BBC World Service - TV, radio and online</li>
-            <li>Other apps and online services like Bitesize, CBeebies, BBC Three, Food, News, Sport and Weather.</li>
-            <p>All free at the point of use, on a wide range of platforms and devices.</p>
-            By buying a licence you support the creation of BBC programmes and services, and new ways of bringing them to you. Our purpose is to ensure as much of the fee as possible goes towards funding them.
-        </ul>
-     </MudCardContent>
+
+        <h2>Thank you for your payment of £!</h2>
+
+        <MudList Clickable="true" Dense="true">
+            <MudListItem Text="@displayCustomer.Id" />
+            <MudDivider />
+            <MudListItem Text="@displayCustomer.firstName" />
+            <MudListItem Text="@displayCustomer.lastName" />
+            <MudListItem Text="@displayCustomer.addressLine1" />
+            <MudListItem Text="@displayCustomer.addressLine2" />
+            <MudListItem Text="@displayCustomer.city" />
+            <MudListItem Text="@displayCustomer.postcode" />
+        </MudList>
+
+
+        <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8"> Print This Page </MudButton>
+    </MudCardContent>
+
+    
 </MudCard>
 
 
@@ -27,4 +34,8 @@
     // This is the id we will carry over from our beginning screen and passed through via the
     [Parameter]
     public NewVisionCustomer displayCustomer { get; set; } = new NewVisionCustomer();
+
+    
+
+
 }
