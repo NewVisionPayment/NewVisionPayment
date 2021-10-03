@@ -63,7 +63,7 @@
         </MudGrid>
         @if (pageNumber == 0)
         {
-            <MudButton Link="/" Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mb-8" href="/">Home Page</MudButton>
+            <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mb-8" @onclick="@goHome">Home Page</MudButton>
             <MudButton @bind-Value="empty" Variant="Variant.Filled" DisableElevation="true" Color="Color.Secondary" Size="Size.Large" Class="mb-8" @onclick="pageForward">Continue to Payment</MudButton>
         }
         else if (pageNumber == 1)
@@ -107,7 +107,8 @@
         {
             pageNumber = 3;
         }
-
+        
+        // Adding a random factor to the payment success to add a little fun when it is declined in the demo.
         Random rnd = new Random();
         int num = rnd.Next(0,3);
         if (num > 0){
@@ -120,6 +121,7 @@
 
     }
 
+    // A method to display the previous blazor component.
     void pageBack()
     {
         pageNumber -= 1;
@@ -129,11 +131,13 @@
         }
     }
 
+    // A method to load the payment declined page - we go back to the payment page
     void pageDeclined()
     {
         pageNumber = 1;
     }
 
+    // A method to return to the index page the user completes the process or decides to leave.
     void goHome()
     {
         NavigationManager.NavigateTo("/", forceLoad: true);
