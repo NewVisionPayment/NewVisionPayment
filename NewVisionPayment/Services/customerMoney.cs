@@ -5,7 +5,8 @@ using NewVisionPayment.Models;
 using NewVisionPayment.Services;
 using NewVisionPayment.Controllers;
 
-
+// A service to provide stateful access to the customer payments objects
+// This will be different for every user
 namespace NewVisionPayment.Services
 {
     public class customerMoney
