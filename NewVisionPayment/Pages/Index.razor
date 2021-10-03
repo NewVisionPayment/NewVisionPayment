@@ -77,10 +77,13 @@
     public static bool validCustomer = false;
     public static bool errorMessage = false;
 
+    // Checking for a valid caseID and Reference
+    // should be replaced with some thing sensible that queries the database...
     async void OnValidSubmit() // This takes the submit from the button in the form
     {
         // Test purposes only
-        //Console.WriteLine("In the submit section");
+        // checking each entry in the arraylist - we should do this
+        // by a databse query not downloading the whole database
         foreach (NewVisionCustomer cust in customers)
         {
             // Test purposes only
@@ -102,19 +105,16 @@
         }
 
     }
+        
+    // This gets our initial database - this should be updated to be a correct crud request, rather than the sloppy
+    // get evrything that it currently is!!!! The things that are done to save time!
     protected override async Task OnInitializedAsync()
     {
-
+        // Our customers list is downloaded from the cosmos DB - replace with some reasonable programming
         customers = await CosmosDbService.GetItemsAsync("SELECT * FROM c");
         // Test purposes only
         //Console.WriteLine("In the all customers section");
 
     }
-
-
-    //We have the databse, now we need to check for the actual case Id and Reference
-
-
-
 
 }
