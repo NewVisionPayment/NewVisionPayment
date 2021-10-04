@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MudBlazor.Services;
-using NewVisionPayment.Server.Data;
 using NewVisionPayment.Controllers;
 using NewVisionPayment.Services;
 
@@ -27,7 +26,6 @@ namespace NewVisionPayment
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddMudServices();
-            services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
             services.AddScoped<Services.customerMoney>();
         }
