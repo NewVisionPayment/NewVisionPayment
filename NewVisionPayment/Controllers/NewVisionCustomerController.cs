@@ -8,6 +8,9 @@ using NewVisionPayment.Models;
 using NewVisionPayment.Services;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+// Adding the CRUD features to our app.
+// This is currently a mix of .Net and Blazor approaches to the CosmosDB
+
 
 namespace NewVisionPayment.Controllers
 {
@@ -25,7 +28,7 @@ namespace NewVisionPayment.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetAllCustomers()
         {
-            return View(await _cosmosDbService.GetItemsAsync("SELECT * FROM c"));
+            return View(await _cosmosDbService.GetItemsAsync("SELECT * FROM c")); // How do we get this to search for only one user?
         }
 
         [ActionName("Create")]
@@ -52,7 +55,7 @@ namespace NewVisionPayment.Controllers
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditAsync([Bind("Id, Who, What, Where, When, Completed")] NewVisionCustomer customer)
+        public async Task<ActionResult> EditAsync([Bind("Id, lastName, firstName, addressLine1, addressLine2, city, postcode, fineAmount, deadLine, paymentPlan, minimumPayment, finePaid")] NewVisionCustomer customer)
         {
             if (ModelState.IsValid)
             {
