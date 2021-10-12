@@ -1,23 +1,45 @@
 ﻿@page "/help"
 
-<MudCard>
-<h3>This is the help Page</h3>
-   If you are having difficulties using the site, some of the answers you need may be on this page.
-  <MudCard>
-    <MudCardHeader>
-        Frequently Asked Questions and Comments:
-      </MudCardHeader>
-    <MudList>
-      <MudListItem>Where can I find my Case ID?</MudListItem>
-      <MudListItem>Where can I find my Online Reference?</MudListItem>
-      <MudListItem>My details are wrong, what should I do?</MudListItem>
-      <MudListItem>Do I have to pay my own fine?</MudListItem>
-      <MudListItem>I don't think I should have to pay this fine.</MudListItem>
-      <MudListItem>What will happen if I do not pay this fine?</MudListItem>
-    </MudList>
-  </MudCard>
-  
-</MudCard>  
+<MudCard Class="mt-2 ml-2" Elevation="0">
+    <h3>This is the help Page</h3>
+    If you are having difficulties using the site, some of the answers you need may be on this page.
+    <MudCard Elevation="0">
+        <MudCardHeader>
+            Frequently Asked Questions and Comments:
+        </MudCardHeader>
+        <MudCardContent>
+        <MudExpansionPanels>
+            <MudExpansionPanel Text="Where can I find my Case ID?" MaxHeight="150">
+                Your Case ID will be in the letter sent to you by us detailing your fine and how to pay it.
+                If you did not receive this letter, it is important that you contact ourselves and the Court and Tribunal
+                Service Northern Ireland as failure to pay by the deadline will result in a criminal conviction.
+            </MudExpansionPanel>
+            <MudExpansionPanel Text="Where can I find my Online Reference?" MaxHeight="150">
+                Your Online Reference will be in the letter sent to you by us detailing your fine and how to pay it.
+                If you did not receive this letter, it is important that you contact ourselves and the Court and Tribunal
+                Service Northern Ireland as failure to pay by the deadline will result in a criminal conviction.
+            </MudExpansionPanel>
+            <MudExpansionPanel Text="My details are wrong, what should I do?" MaxHeight="150">
+                If your details are wrong, it is important that you contact ourselves and the Court and Tribunal
+                Service Northern Ireland as failure to pay by the deadline will result in a criminal conviction.
+            </MudExpansionPanel>
+            <MudExpansionPanel Text="Do I have to pay my own fine?" MaxHeight="150">
+                No, as long as a payment is made on your behalf, the fine will be considered discharged.
+            </MudExpansionPanel>
+            <MudExpansionPanel Text="What will happen if I do not pay this fine?" MaxHeight="150">
+                Failure to pay a fine levied by the Court and Tribunal Service of Northern Ireland
+                by the deadline will result in a criminal conviction.
+            </MudExpansionPanel>
+            <MudExpansionPanel Text="I don't think I should have to pay this fine." MaxHeight="150">
+                This service exists to allow you to pay a fine that has been already been levied.
+                We do not comment on the merit, or otherwise, of cases. Failure to pay a fine levied by the Court
+                and Tribunal Service of Northern Ireland by the deadline will result in a criminal conviction.
+            </MudExpansionPanel>
+        </MudExpansionPanels>
+        </MudCardContent>
+    </MudCard>
+</MudCard>
+
 
 @code {
 

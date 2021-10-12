@@ -8,9 +8,77 @@
 @inject NavigationManager NavigationManager
 @inject ICosmosDbService CosmodDbService
 
+<MudTimeline TimelineOrientation="TimelineOrientation.Horizontal" TimelinePosition="TimelinePosition.Top">
+    @if (pageNumber == 0)
+    {
+        <MudTimelineItem Color="Color.Info">
+            <MudText Typo="Typo.body2" Align="Align.Center">Check your details.</MudText>
+        </MudTimelineItem>
+    }
+    else
+    {
+        <MudTimelineItem Color="Color.Success">
+            <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Details correct.</MudText>
+        </MudTimelineItem>
+    }
+    @if (pageNumber == 1)
+    {
+        <MudTimelineItem Color="Color.Info">
+            <MudText Typo="Typo.body2" Align="Align.Center">Payment details.</MudText>
+        </MudTimelineItem>
+    }
+    else if (pageNumber > 1)
+    {
+        <MudTimelineItem Color="Color.Success">
+            <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Payment entered.</MudText>
+        </MudTimelineItem>
+    }
+    else
+    {
+        <MudTimelineItem>
+            <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Payment details.</MudText>
+        </MudTimelineItem>
+    }
+    @if (pageNumber == 2)
+    {
+        <MudTimelineItem Color="Color.Info">
+            <MudText Typo="Typo.body2" Align="Align.Center">Confirm payment.</MudText>
+        </MudTimelineItem>
+    }
+    else if (pageNumber > 2)
+    {
+        <MudTimelineItem Color="Color.Success">
+            <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Checkout.</MudText>
+        </MudTimelineItem>
+    }
+    else
+    {
+        <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Checkout.</MudText>
+    }
+    @if (pageNumber == 3)
+    {
+        if (Success == true)
+        {
+            <MudTimelineItem Color="Color.Success">
+                <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Payment complete.</MudText>
+            </MudTimelineItem>
+        }
+        else
+        {
+            <MudTimelineItem Color="Color.Error">
+                <MudAlert Severity="Severity.Error">Payment Failed</MudAlert>
+            </MudTimelineItem>
+        }
 
-<MudPaper Class="a-8 ma-2 ml-6" Elevation="3">
+    }
+    else
+    {
+        <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Payment complete.</MudText>
+    }
 
+</MudTimeline>
+<MudPaper Elevation="1">
+    
     <MudContainer Class="mt-8 px-8" MaxWidth="MaxWidth.False">
         <MudGrid>
             <MudItem xs="12" sm="6">
@@ -52,7 +120,7 @@
                     {
                         <CardDetails />
                     }
-                    else if (pageNumber == 2 || pageNumber ==3)
+                    else if (pageNumber == 2 || pageNumber == 3)
                     {
                         <WhatNext />
                     }
@@ -82,7 +150,7 @@
         {
             if (Success)
             {
-                <MudButton  Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="@goHome">Home Page</MudButton>
+                <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="@goHome">Home Page</MudButton>
             }
             else
             {

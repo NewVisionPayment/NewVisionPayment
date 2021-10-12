@@ -23,9 +23,11 @@
     <MudMainContent>
         @Body
     </MudMainContent>
-    <MudAppBar Color="Color.Primary" Elevation="1" Style="top: auto; bottom: 0">
+
+    <MudAppBar Bottom="true" Fixed="true" Dense="true" Color="Color.Primary" Elevation="0" Style="bottom: 0">
         This is the footer!
     </MudAppBar>
+
 </MudLayout>
 
 @code {
@@ -50,7 +52,7 @@
                 TextPrimary = "#000000ff",
                 TextSecondary = "#000000ff",
                 TextDisabled = "#000000ff",
-                GrayDefault = "#EEEEEE",
+                GrayDefault = "#AAAAAAff",
                 PrimaryDarken = "rgb(22, 22, 22)"
 
             }
