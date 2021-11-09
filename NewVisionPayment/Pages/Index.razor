@@ -9,8 +9,6 @@
 @using System.ComponentModel.DataAnnotations
 
 
-@inject ICosmosDbService CosmosDbService
-
 @inject NavigationManager NavigationManager
 @inject ICosmosDbService CosmodDbService
 
@@ -107,7 +105,7 @@
     }
         
     // This gets our initial database - this should be updated to be a correct crud request, rather than the sloppy
-    // get evrything that it currently is!!!! The things that are done to save time!
+    // get evreything that it currently is!!!! The things that are done to save time!
     protected override async Task OnInitializedAsync()
     {
         // Our customers list is downloaded from the cosmos DB - replace with some reasonable programming
