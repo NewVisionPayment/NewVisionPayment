@@ -1,0 +1,118 @@
+﻿@page "/"
+@using System.Collections.Generic;
+@using System.Net;
+@using System.Linq;
+@using Microsoft.Azure.Cosmos;
+@using NewVisionPayment.Models;
+@using NewVisionPayment.Services;
+@using NewVisionPayment.Controllers;
+@using System.ComponentModel.DataAnnotations
+
+
+@inject NavigationManager NavigationManager
+@inject ICosmosDbService CosmodDbService
+
+
+<MudPaper Class="a-16 ma-2 ml-12" Elevation="3">
+    <MudText Typo="Typo.h4" GutterBottom="true">&nbsp;</MudText>
+    <MudText Class="ml-12" Typo="Typo.h4" GutterBottom="false">Paying your fine.</MudText>
+    <MudText Class="mb-8 ml-12">Please have your letter and payment details nearby</MudText>
+    <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+        <MudGrid>
+            <MudItem xs="12" sm="6">
+
+
+                <MudCard>
+                    <MudCardHeader>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudList>
+                            <EditForm Model="@customerInput" OnSubmit="OnValidSubmit">
+                                <MudCard>
+                                    <MudCardContent>
+                                        <MudTextField Label="Case ID" HelperText="8 characters"
+                                                      @bind-Value="customerInput.Id" />
+                                        <MudTextField Label="Online Reference" HelperText="TV21VXXX"
+                                                      @bind-Value="customerInput.reference" />
+                                    </MudCardContent>
+                                    <MudCardActions>
+                                        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Secondary" Class="ml-auto">Continue</MudButton>
+                                    </MudCardActions>
+                                </MudCard>
+                                @if (errorMessage == true)
+                                {
+                                    <MudText Typo="Typo.body2" Align="Align.Center" Class="my-4">
+                                        Case Id or reference not correct
+                                    </MudText>
+                                }
+                            </EditForm>
+                        </MudList>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+            <MudItem xs="12" sm="6">
+
+                <BeforeYouBegin />
+
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</MudPaper>
+
+
+@code {
+
+
+    // This is the public database that we will query
+    public static List<NewVisionCustomer> customers = new List<NewVisionCustomer>();
+
+    // This is our input for the customer data
+    [Parameter]
+    public NewVisionCustomer customerInput { get; set; } = new NewVisionCustomer();
+
+    private NewVisionCustomer ourCustomer = new NewVisionCustomer();
+    // This is a flag to let us know if we have received correct input
+    public static bool validCustomer = false;
+    public static bool errorMessage = false;
+
+    // Checking for a valid caseID and Reference
+    // should be replaced with some thing sensible that queries the database...
+    async void OnValidSubmit() // This takes the submit from the button in the form
+    {
+        // Test purposes only
+        // checking each entry in the arraylist - we should do this
+        // by a databse query not downloading the whole database
+        foreach (NewVisionCustomer cust in customers)
+        {
+            // Test purposes only
+            //Console.WriteLine("In the loop section");
+            if ((cust.Id == customerInput.Id) && (cust.reference == customerInput.reference))
+            {
+                validCustomer = true;
+                errorMessage = false;
+                chooseCustomer.ChosenCustomer = cust;
+                NavigationManager.NavigateTo($"/payment");
+                // Test purposes only
+                //Console.WriteLine("In the found section" );
+            }
+        }
+        if (validCustomer == false)
+        {
+            errorMessage = true;
+            //customerInput = new NewVisionCustomer();
+        }
+
+    }
+
+    // This gets our initial database - this should be updated to be a correct crud request, rather than the sloppy
+    // get evreything that it currently is!!!! The things that are done to save time!
+    protected static async Task OnInitializedAsync()
+    {
+        // Our customers list is downloaded from the cosmos DB - replace with some reasonable programming
+        customers = await CosmosDbService.GetItemsAsync("SELECT * FROM c");
+        // Test purposes only
+        //Console.WriteLine("In the all customers section");
+
+    }
+
+}
