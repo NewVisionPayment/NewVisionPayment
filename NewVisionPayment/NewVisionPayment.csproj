@@ -32,8 +32,4 @@
   <ItemGroup>
     <Compile Remove="Shared\MyCustomTheme.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Pages\Index.razor" />
-    <Content Remove="Pages\Index.razor" />
-  </ItemGroup>
 </Project>
