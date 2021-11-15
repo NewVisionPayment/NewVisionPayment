@@ -10,34 +10,31 @@
 @using NewVisionPayment.Services;
 @using NewVisionPayment.Controllers;
 
-<MudCard Elevation="0">
-    <MudCardHeader>
-    </MudCardHeader>
-    <MudCardContent>
-        <MudList>
-            <MudListItem>
+
+        <Table>
+            <tr>
                 <MudText>Enter your Case Identifier here:</MudText>
                 <MudItem xs="12">
                     <MudTextField T="string" Label="Case Id" />
                 </MudItem>
-            </MudListItem>
-            <MudListItem>
+            </tr>
+            <tr>
                 <MudText>Enter your reference number here:</MudText>
                 <MudItem xs="12">
                     <MudTextField T="String" @bind-Value="Id" Label="Reference Number" />
                 </MudItem>
-            </MudListItem>
-            <MudListItem>
+            </tr>
+            <tr>
                 <MudItem>
                     <div>
                         
                     </div>
                 </MudItem>
-            </MudListItem>
-        </MudList>
-    </MudCardContent>
+            </tr>
+        </Table>
+
     @customer
-</MudCard>
+
 
 
 
