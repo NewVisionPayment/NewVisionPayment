@@ -21,7 +21,7 @@
             this._container = dbClient.GetContainer(databaseName, containerName);
         }
 
-        public List<NewVisionCustomer> customers { get; set; } = new List<NewVisionCustomer>();
+        public static  List<NewVisionCustomer> customers { get; set; } = new List<NewVisionCustomer>();
 
         public event Action OnChange;
 

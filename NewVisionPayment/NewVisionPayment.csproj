@@ -20,8 +20,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="MudBlazor.Markdown" Version="0.0.5" />
     <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.5" />
-    <PackageReference Include="MudBlazor" Version="6.0.2" />
-    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.22.1" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.21.0" />
+    <PackageReference Include="MudBlazor" Version="5.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -31,5 +31,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Shared\MyCustomTheme.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Pages\Index.razor" />
+    <Content Remove="Pages\Index.razor" />
   </ItemGroup>
 </Project>

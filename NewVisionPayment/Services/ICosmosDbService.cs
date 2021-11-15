@@ -9,7 +9,7 @@
     {
         event Action OnChange;
 
-        List<NewVisionCustomer> customers { get; set; }
+        static List<NewVisionCustomer> customers { get; set; }
 
         Task<List<NewVisionCustomer>> GetItemsAsync(string query);
         Task<NewVisionCustomer> GetItemAsync(string id);
