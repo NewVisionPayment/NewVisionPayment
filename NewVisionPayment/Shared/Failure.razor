@@ -22,6 +22,8 @@
     [Parameter]
     public NewVisionCustomer displayFail { get; set; } = new NewVisionCustomer();
 
+    public byte pageNumber = 0;
+
     void pageDeclined()
     {
         pageNumber = 1;
