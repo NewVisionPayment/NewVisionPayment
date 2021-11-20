@@ -53,7 +53,9 @@
     }
     else
     {
-        <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Checkout.</MudText>
+        <MudTimelineItem>
+            <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Checkout.</MudText>
+        </MudTimelineItem>
     }
     @if (pageNumber == 3)
     {
@@ -73,11 +75,13 @@
     }
     else
     {
-        <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Payment complete.</MudText>
+            <MudTimelineItem>
+                <MudText Typo="Typo.body2" Class="mud-text-secondary" Align="Align.Center">Payment completion.</MudText>
+            </MudTimelineItem>
     }
 
 </MudTimeline>
-<MudPaper Elevation="1">
+<MudPaper Elevation="0">
     
     <MudContainer Class="mt-8 px-8" MaxWidth="MaxWidth.False">
         <MudGrid>
