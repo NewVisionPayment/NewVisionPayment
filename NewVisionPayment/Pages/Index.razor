@@ -33,9 +33,9 @@
                             <EditForm Model="@customerInput" OnSubmit="OnValidSubmit">
                                 <MudCard>
                                     <MudCardContent>
-                                        <MudTextField Label="Case ID" HelperText="8 characters"
+                                        <MudTextField Label="Case ID" HelperText="Type your 8 character ID code here"
                                                       @bind-Value="customerInput.Id" />
-                                        <MudTextField Label="Online Reference" HelperText="TV21VXXX"
+                                        <MudTextField Label="Online Reference" HelperText="Type your code here: TV21VXXX"
                                                       @bind-Value="customerInput.reference" />
                                     </MudCardContent>
                                     <MudCardActions>
@@ -66,7 +66,7 @@
 @code {
 
 
-    // This is the public database that we will query
+        // This is the public database that we will query
     public static List<NewVisionCustomer> customers = new List<NewVisionCustomer>();
 
     // This is our input for the customer data
@@ -81,21 +81,27 @@
     async void OnValidSubmit() // This takes the submit from the button in the form
     {
         // Test purposes only
-        //Console.WriteLine("In the submit section");
-        foreach (NewVisionCustomer cust in customers)
+        Console.WriteLine("In the submit section");
+
+        string queryBuild = "SELECT * FROM c WHERE c.id=\"" + customerInput.Id + "\" AND c.reference=\"" + customerInput.reference + "\"";
+
+        Console.WriteLine("The query is: " + queryBuild);
+        try
         {
-            // Test purposes only
-            //Console.WriteLine("In the loop section");
-            if ((cust.Id == customerInput.Id) && (cust.reference == customerInput.reference))
-            {
-                validCustomer = true;
-                errorMessage = false;
-                chooseCustomer.ChosenCustomer = cust;
-                NavigationManager.NavigateTo($"/payment");
-                // Test purposes only
-                //Console.WriteLine("In the found section" );
-            }
+            customers = await CosmosDbService.GetItemsAsync(queryBuild);
         }
+        catch (Exception e)
+            {
+                Console.Write(e.Message +" Damn errors");
+            }
+        if (customers != null)
+        {
+            validCustomer = true;
+            errorMessage = false;
+            chooseCustomer.ChosenCustomer = customers[0];
+            NavigationManager.NavigateTo($"/payment");
+        }
+
         if (validCustomer == false)
         {
             errorMessage = true;
@@ -103,19 +109,5 @@
         }
 
     }
-    protected override async Task OnInitializedAsync()
-    {
-
-        customers = await CosmosDbService.GetItemsAsync("SELECT * FROM c");
-        // Test purposes only
-        //Console.WriteLine("In the all customers section");
-
-    }
-
-
-    //We have the database, now we need to check for the actual case Id and Reference
-
-
-
 
 }
