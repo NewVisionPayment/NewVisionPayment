@@ -12,6 +12,7 @@
         <h3> Use the Back button below to get to the previous screen. </h3>
 
     </MudCardContent>
+    <MudButton Variant="Variant.Filled" DisableElevation="true" Color="Color.Primary" Size="Size.Large" Class="mt-8" @onclick="@pageDeclined">Back</MudButton>
 </MudCard>
 
 
@@ -20,4 +21,11 @@
     // This is the id we will carry over from our beginning screen and passed through via the
     [Parameter]
     public NewVisionCustomer displayFail { get; set; } = new NewVisionCustomer();
+
+    public byte pageNumber = 0;
+
+    void pageDeclined()
+    {
+        pageNumber = 1;
+    }
 }
